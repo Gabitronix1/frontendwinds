@@ -67,11 +67,13 @@ function App() {
       });
 
       const data = await response.json();
+      const respuesta = data.response || data.output || "⚠️ Respuesta vacía";
       const agentMessage = {
         sender: 'agent',
-        content: data.output,
-        rendered: renderAgentOutput(data.output),
-      };
+        content: respuesta,
+        rendered: renderAgentOutput(respuesta),
+};
+
       setChatHistory((prev) => [...prev, agentMessage]);
     } catch (error) {
       const errorMessage = { sender: 'agent', text: 'Error al conectar con el agente.' };
